@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Blogs</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+      }
+      html {
+        font-size: 62.5%;
+      }
+
+      .navBar {
+        height: 15vh;
+        width: 100%;
+        background-color: rgb(43 216 226);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 4;
+      }
+
+      .nav {
+        height: 15%;
+        width: 90%;
+        margin: auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo h1 {
+        font-size: 3rem;
+      }
+
+      .nav_links ul {
+        display: flex;
+        gap: 30px;
+      }
+
+      .nav_links ul li {
+        list-style: none;
+        padding: 0 1rem;
+        display: inline-block;
+        /* background-color: azure; */
+      }
+      .nav_links ul li::after {
+        content: "";
+        display: inline-block;
+        position: relative;
+        width: 0;
+        height: 3px;
+        background-color: aquamarine;
+      }
+      .nav_links ul li:hover::after {
+        content: "";
+        position: absolute;
+        height: 3px;
+        background-color: rgb(1, 5, 4);
+        display: block;
+        color: white;
+      }
+
+      .nav_links ul li a {
+        text-decoration: none;
+        text-align: center;
+        text-transform: uppercase;
+        color: rgb(8, 19, 19);
+        font-weight: 500;
+        font-size: 1.4rem;
+      }
+
+      nav .fa {
+        display: none;
+        padding: 1.7rem;
+        font-size: 3.5rem;
+        /* color: red; */
+        color: black;
+      }
+
+      /* -------------------buttons---------------  */
+      .btn {
+        /* background-color: red; */
+        margin: auto;
+        text-align: center;
+        margin: 1rem 0;
+      }
+      .btn_edit {
+        padding: 0.5rem 2rem;
+        margin: 0.5rem 0.5rem;
+      }
+      .create_post_content h1 {
+        text-align: center;
+        font-size: 2.3rem;
+      }
+      /* -------------------cart---------------  */
+
+      .head h1 {
+        font-size: 5rem;
+        text-align: center;
+        padding: 2rem;
+      }
+
+      /* ------------------responsive-------------- */
+      @media (max-width: 994px) {
+        html {
+          font-size: 50%;
+        }
+        .nav_links {
+          position: fixed;
+          top: 0;
+          right: 0;
+          flex-direction: column;
+          background-color: aqua;
+          height: 100vh;
+          width: 200px;
+          transition: 0.5s;
+          z-index: 2;
+        }
+        .nav_links ul {
+          flex-direction: column;
+          height: 100vh;
+          width: 200px;
+        }
+        nav .fa {
+          display: block;
+        }
+      }
+      .btn_content {
+        max-width: 90%;
+        margin: 0 auto;
+        background-color: #fff;
+        padding: 2rem;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      #blogForm label {
+        display: block;
+        color: #8c8c8c;
+        font-size: 1.6rem;
+        margin-bottom: 0.5rem;
+      }
+
+      #blogForm input[type="text"],
+      #blogForm textarea {
+        width: 100%;
+        padding: 0.8rem;
+        font-size: 1.4rem;
+        border: 1px solid #ddd;
+        border-radius: 3px;
+        margin-bottom: 1rem;
+      }
+
+      #blogForm input[type="submit"] {
+        width: 100%;
+        padding: 1rem;
+        font-size: 1.6rem;
+        background-color: rgb(43, 216, 226);
+        color: #fff;
+        border: none;
+        border-radius: 3px;
+        cursor: pointer;
+      }
+      /* -----------------cart-------------- */
+
+      .cart {
+        margin: auto;
+        width: 100%;
+      }
+      .blog_cart {
+        display: flex;
+        gap: 2.5%;
+        justify-content: space-evenly;
+        margin: auto;
+        flex-wrap: wrap;
+      }
+      .hover_effect {
+        /* flex: 1; */
+        width: 380px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        padding: 1.5rem;
+
+        margin-top: 20px;
+      }
+      .content {
+        overflow: hidden;
+        height: calc(1.8rem * 4); /* Show at least three lines of text */
+        display: -webkit-box;
+        -webkit-line-clamp: 4;
+        -webkit-box-orient: vertical;
+        text-overflow: ellipsis;
+        margin-top: 5px;
+        color: rgb(19, 83, 83);
+        margin-bottom: 20px;
+      }
+      .hover_effect h2 {
+        padding: 10px 20px;
+        font-size: 2rem;
+      }
+      .hover_effect p {
+        padding: 10px 0px;
+        text-align: justify;
+
+        font-size: 1.3rem;
+      }
+      .hover_effect a {
+        text-decoration: none;
+      }
+      .hover_effect a {
+        font-size: 1.6rem;
+      }
+
+      /* ------------------responsive-------------- */
+      @media (max-width: 994px) {
+        html {
+          font-size: 50%;
+        }
+
+        .blog_cart {
+          flex-direction: column;
+          align-items: center;
+        }
+        .hover_effect {
+          width: 100%;
+          background-color: antiquewhite;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ------------------------------------ -->
+    <header class="header">
+      <div class="navBar">
+        <nav class="nav">
+          <div class="logo"><h1>LOGO</h1></div>
+
+          <div class="nav_links">
+            <i class="fa fa-times" onclick="faFun()"></i>
+            <ul>
+              <li><a href="index.html">Home</a></li>
+              <li><a href="blog.html">BLOG</a></li>
+              <li><a href="profile.html">Profile</a></li>
+              <li><a href="register.html">REGISTER</a></li>
+              <li><a href="login.html">lOGIN</a></li>
+            </ul>
+          </div>
+          <i class="fa fa-bars" onclick="faFun()"></i>
+        </nav>
+      </div>
+    </header>
+    <!-- ------------------------------------ -->
+    <div class="head">
+      <h1>Profile</h1>
+    </div>
+
+    <section class="tab">
+      <div class="btn">
+        <button class="create_post btn_edit">Create Post</button>
+        <button class="my_blogs btn_edit">My Blogs</button>
+        <button class="logout btn_edit">Logout</button>
+      </div>
+      <div class="btn_content">
+        <div class="create_post_content">
+          <p></p>
+          <h1>Create a New Blog Post</h1>
+          <form id="blogForm">
+            <label for="topic">Topic:</label>
+            <input type="text" id="topic" name="topic" required /><br /><br />
+            <label for="description">Description:</label><br />
+            <textarea id="description" name="description" required></textarea
+            ><br /><br />
+            <input type="submit" class="create" />
+          </form>
+        </div>
+        <div class="my_blogs_content" style="display: none">
+          <!-- ----------------------------display profile data------------- -->
+
+          <!-- -----------------------1-------------- -->
+          <div class="cart">
+            <div class="blog_cart">
+              <div class="hover_effect">
+                <h2>This is Header of Blog</h2>
+                <hr />
+                <div class="content">
+                  <p>
+                    Lorem, ipsum dolor sit amet consectetur adipisicing elit.
+                    Esse, repudiandae consequatur laboriosam saepe perspiciatis
+                    corporis nesciunt doloribus aliquid consequuntur voluptate
+                    dolor, fugiat sit ea ex minus natus? Dolorum, esse nisi?
+                  </p>
+                </div>
+                <a href="">edit</a>
+              </div>
+              <!-- --------2-------- -->
+
+              <!-- --------2-------- -->
+
+              <!-- --------2-------- -->
+
+              <!-- --------2-------- -->
+            </div>
+
+            <!-- ------------end of cart--------- -->
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ------------------------------------ -->
+
+    <!-- -----------------script------------------  -->
+    <script>
+      // --------------------navbar-----------------
+      const navBar = document.querySelector(".navBar");
+      window.addEventListener("scroll", () => {
+        if (pageYOffset > 300) {
+          navBar.style.position = "fixed";
+        } else {
+          navBar.style.position = "sticky";
+        }
+      });
+      const fa = document.querySelector(".fa");
+      const nav_links = document.querySelector(".nav_links");
+      nav_links.style.right = "-200px";
+      fa.style.color = "red";
+
+      const faFun = () => {
+        if (nav_links.style.right === "-200px") {
+          nav_links.style.right = "0";
+        } else {
+          nav_links.style.right = "-200px";
+        }
+      };
+
+      //   -----------------------toggle conetnt--------------------
+      const create_post = document.querySelector(".create_post");
+      const my_blogs = document.querySelector(".my_blogs");
+      const logoutButton = document.querySelector(".logout");
+
+      const create_post_content = document.querySelector(
+        ".create_post_content"
+      );
+      const my_blogs_content = document.querySelector(".my_blogs_content");
+
+      create_post.addEventListener("click", () => {
+        create_post_content.style.display = "block";
+        my_blogs_content.style.display = "none";
+      });
+
+      my_blogs.addEventListener("click", () => {
+        create_post_content.style.display = "none";
+        my_blogs_content.style.display = "block";
+      });
+
+      // -----------------------------Logout----------------------------
+      logoutButton.addEventListener("click", () => {
+        fetch("/logout", {
+          method: "GET",
+          credentials: "include",
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            if (data.status === "success") {
+              window.location.href = "/login.html";
+            } else {
+              console.log(data.message);
+            }
+          })
+          .catch((error) => {
+            console.error("Error:", error);
+          });
+      });
+
+      //   -------------.............end.................------------4
+
+      //   -------------.............script to post the Blog.................------------4
+      const form = document.getElementById("blogForm");
+
+      form.addEventListener("submit", async (e) => {
+        // e.preventDefault();
+
+        const topic = document.getElementById("topic").value;
+        const description = document.getElementById("description").value;
+
+        const data = {
+          topic,
+          description,
+        };
+
+        try {
+          const response = await fetch("/admin", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data),
+          });
+
+          const result = await response.json();
+
+          // Handle the response from the backend
+          console.log(result);
+        } catch (error) {
+          console.error(error);
+        }
+      });
+      //   -------------.............end.................------------
+
+      //    --------------.......fetch the data and display..........-------
+      const cart = document.querySelector(".cart");
+      async function displayData() {
+        try {
+          const response = await fetch("/profileblog");
+          const result = await response.json();
+          const data = result.postData; // Access the correct property from the response
+
+          cart.innerHTML = ""; // Clear the cart element
+
+          data.forEach((element) => {
+            const blog_cart = document.createElement("div");
+            blog_cart.classList.add("blog_cart");
+
+            const h1 = document.createElement("h1");
+            h1.textContent = element.topic;
+
+            const hr = document.createElement("hr");
+
+            const content = document.createElement("div");
+            content.classList.add("content");
+
+            const p = document.createElement("p");
+            p.textContent = element.description;
+
+            // --------------------
+            const edit = document.createElement("button");
+            edit.classList.add("edit_btn");
+            edit.setAttribute("id", element._id);
+            const anker = document.createElement("a");
+            anker.textContent = "edit";
+            anker.setAttribute("href", `editpage.html?id=${element._id}`);
+            anker.setAttribute("target", `_blank`);
+
+            // -------------------
+            cart.appendChild(blog_cart);
+            blog_cart.appendChild(h1);
+            blog_cart.appendChild(hr);
+            blog_cart.appendChild(content);
+            content.appendChild(p);
+
+            // ---------------------
+
+            content.appendChild(p);
+            blog_cart.appendChild(h1);
+            blog_cart.appendChild(hr);
+            blog_cart.appendChild(content);
+            cart.appendChild(blog_cart);
+            // -------------
+            blog_cart.appendChild(edit);
+            edit.appendChild(anker);
+          });
+        } catch (error) {
+          console.error(error);
+        }
+      }
+
+      displayData()
+        .then(() => {
+          console.log("promise resolveds", document.cookie);
+        })
+        .catch((error) => {
+          console.error("Promise rejected:", error);
+        });
+
+      // ----------------------------
+      const tab = document.querySelector(".tab");
+
+      if (document.cookie.length) {
+        tab.style.display = "block";
+      } else {
+        window.alert("plz log in");
+        window.location.href = "/login.html";
+      }
+    </script>
+  </body>
+</html>

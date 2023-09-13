@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Home Page</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+      }
+      html {
+        font-size: 62.5%;
+      }
+      .header {
+        height: 100vh;
+        width: 100%;
+        background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+          url(images/img1.jpg);
+        background-size: cover;
+        background-repeat: no-repeat;
+        position: relative;
+      }
+
+      .navBar {
+        height: 15vh;
+        width: 100%;
+        background-color: rgb(43 216 226);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 4;
+      }
+
+      .nav {
+        height: 15%;
+        width: 90%;
+        margin: auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo h1 {
+        font-size: 3rem;
+      }
+
+      .nav_links ul {
+        display: flex;
+        gap: 30px;
+      }
+
+      .nav_links ul li {
+        list-style: none;
+        padding: 0 1rem;
+        display: inline-block;
+        /* background-color: azure; */
+      }
+      .nav_links ul li::after {
+        content: "";
+        display: inline-block;
+        position: relative;
+        width: 0;
+        height: 3px;
+        background-color: aquamarine;
+      }
+      .nav_links ul li:hover::after {
+        content: "";
+        position: absolute;
+        height: 3px;
+        background-color: rgb(1, 5, 4);
+        display: block;
+        color: white;
+      }
+
+      .nav_links ul li a {
+        text-decoration: none;
+        text-align: center;
+        text-transform: uppercase;
+        color: rgb(8, 19, 19);
+        font-weight: 500;
+        font-size: 1.4rem;
+      }
+
+      nav .fa {
+        display: none;
+        padding: 1.7rem;
+        font-size: 3.5rem;
+        /* color: red; */
+        color: black;
+      }
+      .content {
+        border: 2px solid white;
+        width: 80%;
+        display: flex;
+        position: absolute;
+        top: 40%;
+        left: 50%;
+        transform: translate(-50%, -10%);
+        /* transform: translateX(-50%); */
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        color: wheat;
+        padding: 40px;
+        text-align: center;
+        z-index: 1;
+      }
+      .content h1 {
+        font-size: 7rem;
+        padding: 20px;
+      }
+      .content p {
+        font-size: 2rem;
+      }
+      .content a {
+        margin-top: 2rem;
+        padding: 0.9rem 1.7rem;
+        border: 1px solid red;
+        text-decoration: none;
+        color: white;
+        font-size: 1.7rem;
+      }
+      .content a:hover {
+        border: 1px solid red;
+        text-decoration: nrgb(249, 249, 249);
+        color: white;
+        background: red;
+        transition: 0.5s;
+      }
+
+      /* ------------------responsive-------------- */
+      @media (max-width: 994px) {
+        html {
+          font-size: 50%;
+        }
+        .nav_links {
+          position: fixed;
+          top: 0;
+          right: 0;
+          flex-direction: column;
+          background-color: aqua;
+          height: 100vh;
+          width: 200px;
+          transition: 0.5s;
+          z-index: 2;
+        }
+        .nav_links ul {
+          flex-direction: column;
+          height: 100vh;
+          width: 200px;
+        }
+        nav .fa {
+          display: block;
+        }
+
+        /* -----------about us ----------- */
+        .aboutContainer {
+          flex-direction: column;
+        }
+      }
+
+      @media (max-width: 545px) {
+        html {
+          font-size: 47% !important;
+        }
+      }
+
+      /* -------------about us ---------  */
+      .aboutUs h1 {
+        margin: 5rem 0;
+        text-align: center;
+        font-size: 5rem;
+      }
+
+      .aboutContainer {
+        display: flex;
+        width: 85%;
+        margin: auto;
+        gap: 3.5%;
+        flex-wrap: wrap;
+        /* background-color: bisque; */
+      }
+      .aboutContent {
+        flex: 2;
+        margin: 1rem 0;
+        padding: 2rem;
+        /* border: 1px solid black; */
+        text-align: center;
+        box-shadow: 7px 8px 25px -9px rgba(76, 41, 41, 0.89);
+        -webkit-box-shadow: 7px 8px 25px -9px rgba(76, 41, 41, 0.89);
+        -moz-box-shadow: 7px 8px 25px -9px rgba(76, 41, 41, 0.89);
+        border-radius: 0.5rem;
+      }
+      .aboutContent .fa {
+        color: blueviolet;
+        /* background-color: red; */
+        border-radius: 50%;
+        font-size: 7rem;
+        padding: 2rem;
+      }
+      .aboutContent h2 {
+        font-size: 2.7rem;
+        padding: 1rem 0;
+      }
+      .aboutContent p {
+        line-height: 1.8rem;
+        font-size: 1.4rem;
+        color: rgb(124, 126, 128);
+      }
+
+      /* ------------------our motive --------  */
+
+      .our_motive {
+        margin: auto;
+        width: 85%;
+      }
+      .our_motive h1 {
+        text-align: center;
+        margin: 5rem 0;
+        font-size: 5rem;
+      }
+      .our_motive_container {
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+      }
+      img {
+        width: 100%;
+      }
+
+      .our_motive_description {
+        text-align: center;
+      }
+      .our_motive_description h2 {
+        font-size: 2.7rem;
+        padding: 1rem 0;
+      }
+      .our_motive_description p {
+        line-height: 1.8rem;
+        font-size: 1.4rem;
+        color: rgb(124, 126, 128);
+      }
+      @media (max-width: 994px) {
+        .our_motive_container {
+          flex-direction: column;
+        }
+      }
+      /* ----------------Our Team -----------  */
+      .ourTeam {
+        width: 80%;
+        margin: auto;
+      }
+      .ourTeam h1 {
+        margin: 5rem 0;
+        text-align: center;
+        font-size: 5rem;
+      }
+      .OurTeam_container {
+        display: flex;
+        justify-content: center;
+        gap: 5%;
+        text-align: center;
+      }
+
+      .OurTeam_content {
+        flex: 1;
+        margin: 2rem 0;
+        padding: 2rem;
+        border-radius: 10%;
+        box-shadow: 7px 8px 25px -9px rgba(76, 41, 41, 0.89);
+        -webkit-box-shadow: 7px 8px 25px -9px rgba(76, 41, 41, 0.89);
+        -moz-box-shadow: 7px 8px 25px -9px rgba(76, 41, 41, 0.89);
+      }
+      .OurTeam_content .fa {
+        color: blueviolet;
+        /* background-color: red; */
+        border-radius: 50%;
+        font-size: 6rem;
+        padding: 2rem;
+      }
+      .OurTeam_content h2 {
+        font-size: 2.7rem;
+        padding: 1rem 0;
+      }
+      .OurTeam_content p {
+        line-height: 1.8rem;
+        font-size: 1.4rem;
+        color: rgb(124, 126, 128);
+      }
+      @media (max-width: 994px) {
+        .OurTeam_container {
+          flex-direction: column;
+        }
+      }
+      footer {
+        margin: 10rem 0 2rem;
+      }
+      .blog_footer {
+        text-align: center;
+        background-color: beige;
+        padding: 2rem;
+      }
+    </style>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+  </head>
+  <body>
+    <header class="header">
+      <div class="navBar">
+        <nav class="nav">
+          <div class="logo"><h1>LOGO</h1></div>
+
+          <div class="nav_links">
+            <i class="fa fa-times" onclick="faFun()"></i>
+            <ul>
+              <li><a href="index.html">Home</a></li>
+              <li><a href="blog.html">BLOG</a></li>
+              <li><a href="profile.html">Profile</a></li>
+              <li><a href="register.html">REGISTER</a></li>
+              <li><a href="login.html">lOGIN</a></li>
+            </ul>
+          </div>
+          <i class="fa fa-bars" onclick="faFun()"></i>
+        </nav>
+      </div>
+      <div class="content">
+        <h1>Join Us</h1>
+        <p>We Provide The Best Blogging Platform Ever</p>
+        <a href="register.html">REGISTER NOW</a>
+      </div>
+    </header>
+
+    <section class="aboutUs">
+      <h1>About Us</h1>
+      <div class="aboutContainer">
+        <!-- --------------1------------  -->
+        <div class="content_1 aboutContent">
+          <i class="fa fa-book" aria-hidden="true"></i>
+          <h2>Header</h2>
+          <p>
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eos eius
+            commodi excepturi eveniet molestias fugiat facilis pariatur
+            cupiditate quo qui. Earum, magni!
+          </p>
+        </div>
+
+        <!-- -----------------2-------------  -->
+        <div class="content_2 aboutContent">
+          <i class="fa fa-book" aria-hidden="true"></i>
+          <h2>Header</h2>
+          <p>
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eos eius
+            commodi excepturi eveniet molestias fugiat facilis pariatur
+            cupiditate quo qui. Earum, magni!
+          </p>
+        </div>
+        <!-- -------------3--------------  -->
+        <div class="content_3 aboutContent">
+          <i class="fa fa-book" aria-hidden="true"></i>
+          <h2>Header</h2>
+          <p>
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eos eius
+            commodi excepturi eveniet molestias fugiat facilis pariatur
+            cupiditate quo qui. Earum, magni!
+          </p>
+        </div>
+
+        <!-- ---------------------end-------------  -->
+      </div>
+    </section>
+    <!-- ---------------------our motive--------- -->
+    <section class="our_motive">
+      <h1>Our Motive</h1>
+      <div class="our_motive_container">
+        <div class="our_motive_img motive_common">
+          <img src="images/img_blog.png " alt="" />
+        </div>
+        <div class="our_motive_description motive_common">
+          <h2>Heading</h2>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit.
+            Exercitationem ab eveniet natus reprehenderit magnam magni soluta
+            sunt incidunt repellendus, et quis voluptatem qui totam, nobis nemo
+            voluptas odit, voluptate rem?Exercitationem ab eveniet natus
+            reprehenderit magnam magni soluta sunt incidunt repellendus, et quis
+            voluptatem qui totam, nobis nemo voluptas odit, voluptate rem?
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ---------------Our Team -------------  -->
+
+    <section class="ourTeam">
+      <h1>Our Team</h1>
+      <div class="OurTeam_container">
+        <!-- --------1----------  -->
+        <div class="OurTeam_content OurTeam_content_1">
+          <i class="fa fa-user-circle" aria-hidden="true"></i>
+          <h2>Rajesh</h2>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quia at
+            quos aliquid a officia consectetur quae
+          </p>
+        </div>
+        <!-- --------1----------  -->
+        <div class="OurTeam_content OurTeam_content_2">
+          <i class="fa fa-user-circle" aria-hidden="true"></i>
+          <h2>Rajesh</h2>
+          <p>
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laboriosam
+            animi fuga voluptate eligendi quidem, laudantium vitae quisquam in
+          </p>
+        </div>
+        <!-- --------1----------  -->
+        <div class="OurTeam_content OurTeam_content_3">
+          <i class="fa fa-user-circle" aria-hidden="true"></i>
+          <h2>Rajesh</h2>
+          <p>
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. Soluta rem
+            debitis pariatur perspiciatis illo
+          </p>
+        </div>
+      </div>
+
+      <!-- -------------end----------  -->
+    </section>
+    <!-- -------------footer----------  -->
+
+    <footer class="blog_footer">
+      <p>copyright rajesh pandey&copy;2024</p>
+    </footer>
+
+    <!-- ----------------script-------------- -->
+    <script>
+      const navBar = document.querySelector(".navBar");
+      window.addEventListener("scroll", () => {
+        if (pageYOffset > 300) {
+          navBar.style.position = "fixed";
+        } else {
+          navBar.style.position = "sticky";
+        }
+      });
+      const fa = document.querySelector(".fa");
+      const nav_links = document.querySelector(".nav_links");
+      nav_links.style.right = "-200px";
+      fa.style.color = "red";
+
+      const faFun = () => {
+        if (nav_links.style.right === "-200px") {
+          nav_links.style.right = "0";
+        } else {
+          nav_links.style.right = "-200px";
+        }
+      };
+    </script>
+  </body>
+</html>

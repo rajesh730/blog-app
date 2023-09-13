@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Blogs</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+      }
+      html {
+        font-size: 62.5%;
+      }
+
+      .navBar {
+        height: 15vh;
+        width: 100%;
+        background-color: rgb(43 216 226);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 4;
+      }
+
+      .nav {
+        height: 15%;
+        width: 90%;
+        margin: auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo h1 {
+        font-size: 3rem;
+      }
+
+      .nav_links ul {
+        display: flex;
+        gap: 30px;
+      }
+
+      .nav_links ul li {
+        list-style: none;
+        padding: 0 1rem;
+        display: inline-block;
+        /* background-color: azure; */
+      }
+      .nav_links ul li::after {
+        content: "";
+        display: inline-block;
+        position: relative;
+        width: 0;
+        height: 3px;
+        background-color: aquamarine;
+      }
+      .nav_links ul li:hover::after {
+        content: "";
+        position: absolute;
+        height: 3px;
+        background-color: rgb(1, 5, 4);
+        display: block;
+        color: white;
+      }
+
+      .nav_links ul li a {
+        text-decoration: none;
+        text-align: center;
+        text-transform: uppercase;
+        color: rgb(8, 19, 19);
+        font-weight: 500;
+        font-size: 1.4rem;
+      }
+
+      nav .fa {
+        display: none;
+        padding: 1.7rem;
+        font-size: 3.5rem;
+        /* color: red; */
+        color: black;
+      }
+
+      /* -------------------cart---------------  */
+
+      .head h1 {
+        font-size: 5rem;
+        text-align: center;
+        padding: 2rem;
+      }
+
+      .container h1 {
+        font-size: 5rem;
+        /* background-color: rgb(3, 101, 101); */
+        text-align: center;
+        margin: 2rem 0;
+      }
+      #loginForm {
+        max-width: 50%;
+        margin: 0 auto;
+        background-color: #fff;
+        padding: 2rem;
+        border-radius: 5px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      }
+
+      #loginForm label {
+        display: block;
+        color: #8c8c8c;
+        font-size: 1.6rem;
+        margin-bottom: 0.5rem;
+      }
+
+      #loginForm input[type="text"],
+      #loginForm input[type="email"],
+      #loginForm input[type="password"] {
+        width: 100%;
+        padding: 0.8rem;
+        font-size: 1.4rem;
+        border: 1px solid #ddd;
+        border-radius: 3px;
+        margin-bottom: 1rem;
+      }
+
+      #loginForm input[type="submit"] {
+        width: 100%;
+        padding: 1rem;
+        font-size: 1.6rem;
+        background-color: rgb(43, 216, 226);
+        color: #fff;
+        border: none;
+        border-radius: 3px;
+        cursor: pointer;
+      }
+
+      /* ------------------responsive-------------- */
+      @media (max-width: 994px) {
+        html {
+          font-size: 50%;
+        }
+        .nav_links {
+          position: fixed;
+          top: 0;
+          right: 0;
+          flex-direction: column;
+          background-color: aqua;
+          height: 100vh;
+          width: 200px;
+          transition: 0.5s;
+          z-index: 2;
+        }
+        .nav_links ul {
+          flex-direction: column;
+          height: 100vh;
+          width: 200px;
+        }
+        nav .fa {
+          display: block;
+        }
+        #loginForm {
+          max-width: 100%;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ------------------------------------ -->
+    <header class="header">
+      <div class="navBar">
+        <nav class="nav">
+          <div class="logo"><h1>LOGO</h1></div>
+
+          <div class="nav_links">
+            <i class="fa fa-times" onclick="faFun()"></i>
+            <ul>
+              <li><a href="index.html">Home</a></li>
+              <li><a href="blog.html">BLOG</a></li>
+              <li><a href="profile.html">Profile</a></li>
+              <li><a href="register.html">REGISTER</a></li>
+              <li><a href="login.html">lOGIN</a></li>
+            </ul>
+          </div>
+          <i class="fa fa-bars" onclick="faFun()"></i>
+        </nav>
+      </div>
+    </header>
+    <!-- ------------------------------------ -->
+    <div class="container">
+      <h1>Login</h1>
+      <form id="loginForm">
+        <div class="form-group">
+          <label for="email">Email:</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="Enter your email"
+          />
+        </div>
+        <div class="form-group">
+          <label for="password">Password:</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            placeholder="Enter your password"
+          />
+        </div>
+        <div class="form-group">
+          <input type="submit" />
+        </div>
+      </form>
+    </div>
+    <!-- ------------------------------------ -->
+
+    <!-- -----------------script------------------  -->
+    <script>
+      const navBar = document.querySelector(".navBar");
+      window.addEventListener("scroll", () => {
+        if (pageYOffset > 300) {
+          navBar.style.position = "fixed";
+        } else {
+          navBar.style.position = "sticky";
+        }
+      });
+      const fa = document.querySelector(".fa");
+      const nav_links = document.querySelector(".nav_links");
+      nav_links.style.right = "-200px";
+      fa.style.color = "red";
+
+      const faFun = () => {
+        if (nav_links.style.right === "-200px") {
+          nav_links.style.right = "0";
+        } else {
+          nav_links.style.right = "-200px";
+        }
+      };
+
+      // -------------login functionality ---------------
+      document.addEventListener("DOMContentLoaded", () => {
+        const loginForm = document.getElementById("loginForm");
+
+        loginForm.addEventListener("submit", async (event) => {
+          event.preventDefault();
+
+          const email = document.getElementById("email").value;
+          const password = document.getElementById("password").value;
+
+          const userData = {
+            email: email,
+            password: password,
+          };
+
+          try {
+            const response = await fetch("/login", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify(userData),
+            });
+
+            const data = await response.json();
+            if (data.status === "success") {
+              window.location.href = "/profile.html";
+            } else {
+              console.log(data.message);
+            }
+            console.log(data);
+            // Add your code to handle the login response
+          } catch (error) {
+            console.error("Error:", error);
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

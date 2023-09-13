@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Blogs</title>
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+      }
+      html {
+        font-size: 62.5%;
+      }
+
+      .navBar {
+        height: 15vh;
+        width: 100%;
+        background-color: rgb(43 216 226);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 4;
+      }
+
+      .nav {
+        height: 15%;
+        width: 90%;
+        margin: auto;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo h1 {
+        font-size: 3rem;
+      }
+
+      .nav_links ul {
+        display: flex;
+        gap: 30px;
+      }
+
+      .nav_links ul li {
+        list-style: none;
+        padding: 0 1rem;
+        display: inline-block;
+        /* background-color: azure; */
+      }
+      .nav_links ul li::after {
+        content: "";
+        display: inline-block;
+        position: relative;
+        width: 0;
+        height: 3px;
+        background-color: aquamarine;
+      }
+      .nav_links ul li:hover::after {
+        content: "";
+        position: absolute;
+        height: 3px;
+        background-color: rgb(1, 5, 4);
+        display: block;
+        color: white;
+      }
+
+      .nav_links ul li a {
+        text-decoration: none;
+        text-align: center;
+        text-transform: uppercase;
+        color: rgb(8, 19, 19);
+        font-weight: 500;
+        font-size: 1.4rem;
+      }
+
+      nav .fa {
+        display: none;
+        padding: 1.7rem;
+        font-size: 3.5rem;
+        /* color: red; */
+        color: black;
+      }
+
+      /* html {
+        font-size: 55%;
+      } */
+      /* -------------------cart---------------  */
+      .cart {
+        width: 80%;
+        margin: auto;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-evenly;
+      }
+      .blog_cart {
+        display: flex;
+        gap: 2.5%;
+        justify-content: space-evenly;
+        margin: auto;
+        flex-wrap: wrap;
+        margin-top: 2rem;
+        margin-top: 20px;
+        height: 250px;
+        position: relative;
+      }
+      .hover_effect {
+        height: 250px;
+
+        width: 380px;
+        /* height: 300px; */
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        padding: 1.5rem;
+      }
+      .content {
+        overflow: hidden;
+        height: calc(1.8rem * 4); /* Show at least three lines of text */
+        display: -webkit-box;
+        -webkit-line-clamp: 4;
+        -webkit-box-orient: vertical;
+        text-overflow: ellipsis;
+        margin-top: 5px;
+        color: rgb(19, 83, 83);
+        margin-bottom: 20px;
+      }
+      .hover_effect h1 {
+        overflow: hidden;
+        height: calc(2rem * 3); /* Show at least three lines of text */
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        text-overflow: ellipsis;
+        padding: 10px 20px;
+        font-size: 2rem;
+      }
+      .hover_effect p {
+        padding: 10px 0px;
+        text-align: justify;
+
+        font-size: 1.3rem;
+      }
+      .hover_effect a {
+        text-decoration: none;
+        /* padding: 30px 0px; */
+        /* background-color: aqua; */
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        padding: 1rem 2rem;
+      }
+      .hover_effect a {
+        font-size: 1.6rem;
+      }
+      .head h1 {
+        font-size: 5rem;
+        text-align: center;
+        padding: 2rem;
+      }
+
+      /* ------------------responsive-------------- */
+      @media (max-width: 994px) {
+        html {
+          font-size: 50%;
+        }
+        .nav_links {
+          position: fixed;
+          top: 0;
+          right: 0;
+          flex-direction: column;
+          background-color: aqua;
+          height: 100vh;
+          width: 200px;
+          transition: 0.5s;
+          z-index: 2;
+        }
+        .nav_links ul {
+          flex-direction: column;
+          height: 100vh;
+          width: 200px;
+        }
+        nav .fa {
+          display: block;
+        }
+        .blog_cart {
+          flex-direction: column;
+          align-items: center;
+          width: 100%;
+        }
+        .hover_effect {
+          width: 100%;
+          background-color: antiquewhite;
+        }
+      }
+      footer {
+        margin: 10rem 0 2rem;
+      }
+      .blog_footer {
+        text-align: center;
+        background-color: beige;
+        padding: 2rem;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ------------------------------------ -->
+    <header class="header">
+      <div class="navBar">
+        <nav class="nav">
+          <div class="logo"><h1>LOGO</h1></div>
+
+          <div class="nav_links">
+            <i class="fa fa-times" onclick="faFun()"></i>
+            <ul>
+              <li><a href="index.html">Home</a></li>
+              <li><a href="blog.html">BLOG</a></li>
+              <li><a href="profile.html">Profile</a></li>
+              <li><a href="register.html">REGISTER</a></li>
+              <li><a href="login.html">lOGIN</a></li>
+            </ul>
+          </div>
+          <i class="fa fa-bars" onclick="faFun()"></i>
+        </nav>
+      </div>
+    </header>
+    <!-- ------------------------------------ -->
+    <div class="head">
+      <h1>Blogs</h1>
+    </div>
+
+    <section class="cart">
+      <div class="blog_cart">
+        <!-- ----------cart 1 ------------ -->
+        <div class="hover_effect">
+          <h1>This is Header of Blog</h1>
+          <hr />
+          <div class="content">
+            <p>
+              repudiandae consequatur laboriosam saepe perspiciatis corporis
+              nesciunt doloribus aliquid consequuntur voluptate dolor, fugiat
+              sit ea ex minus natus? Dolorum, esse nisi?
+            </p>
+          </div>
+          <a href="">read more</a>
+        </div>
+        <!-- ----------cart 2 ------------ -->
+      </div>
+    </section>
+
+    <footer class="blog_footer">
+      <p>copyright rajesh pandey&copy;2024</p>
+    </footer>
+
+    <!-- -----------------script------------------  -->
+    <script>
+      const navBar = document.querySelector(".navBar");
+      window.addEventListener("scroll", () => {
+        if (pageYOffset > 300) {
+          navBar.style.position = "fixed";
+        } else {
+          navBar.style.position = "sticky";
+        }
+      });
+      const fa = document.querySelector(".fa");
+      const nav_links = document.querySelector(".nav_links");
+      nav_links.style.right = "-200px";
+      fa.style.color = "red";
+
+      const faFun = () => {
+        if (nav_links.style.right === "-200px") {
+          nav_links.style.right = "0";
+        } else {
+          nav_links.style.right = "-200px";
+        }
+      };
+      // -----------------blog script start -----------
+      const cart = document.querySelector(".cart");
+      const blog_cart = document.querySelector(".blog_cart");
+
+      async function fetchData() {
+        try {
+          const response = await fetch("/alldata");
+          const resdata = await response.json();
+          let lengthOfData = resdata.data;
+          return lengthOfData;
+        } catch (error) {
+          console.error(error);
+        }
+      }
+
+      async function displayData() {
+        const data = await fetchData();
+        console.log(data);
+        cart.innerHTML = ``;
+        data.forEach((element) => {
+          // ---------------------------------------
+          const hover_effect = document.createElement("div");
+          hover_effect.classList.add("hover_effect");
+
+          // ----------------------------------
+
+          const blog_cart = document.createElement("div");
+          blog_cart.classList.add("blog_cart");
+          blog_cart.setAttribute("id", element._id);
+          hover_effect.setAttribute("id", element._id);
+          // ---------------------------------------
+
+          const h1 = document.createElement("h1");
+          h1.textContent = element.topic;
+          const hr = document.createElement("hr");
+          // ---------------------------------------
+          // ---------------------------------------
+          const content = document.createElement("div");
+          content.classList.add("content");
+          // ---------------------------------------
+          const p = document.createElement("p");
+          p.textContent = element.description;
+
+          // ---------------button for read more -------
+          const read_more = document.createElement("button");
+          read_more.classList.add("read_more_btn");
+          // read_more.setAttribute("id", element._id);
+          const anker = document.createElement("a");
+          anker.textContent = "read more";
+          anker.setAttribute("href", `fullblog.html/?id=${element._id}`);
+          anker.setAttribute("target", `_blank`);
+
+          // // --------original-----------
+          // cart.appendChild(blog_cart);
+          // blog_cart.appendChild(h1);
+          // blog_cart.appendChild(hr);
+          // blog_cart.appendChild(content);
+          // content.appendChild(p);
+
+          // -------------trial---------
+          cart.appendChild(blog_cart);
+          blog_cart.appendChild(hover_effect);
+          hover_effect.appendChild(h1);
+          hover_effect.appendChild(hr);
+          hover_effect.appendChild(content);
+          content.appendChild(p);
+
+          // -------------
+          hover_effect.appendChild(read_more);
+          read_more.appendChild(anker);
+        });
+      }
+      displayData()
+        .then(() => {
+          console.log("promise resolveds", document.cookie);
+        })
+        .catch((error) => {
+          console.error("Promise rejected:", error);
+        });
+    </script>
+  </body>
+</html>

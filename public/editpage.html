@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Edit Blog Post</title>
+    <style>
+      h1 {
+        text-align: center;
+        margin: 20px 0;
+      }
+      #editForm {
+        width: 80%;
+        margin: auto;
+      }
+      #editForm label {
+        display: block;
+        color: #8c8c8c;
+        font-size: 1.6rem;
+        margin-bottom: 0.5rem;
+      }
+
+      #editForm input[type="text"],
+      #editForm textarea {
+        width: 100%;
+        padding: 0.8rem;
+        font-size: 1.4rem;
+        border: 1px solid #ddd;
+        border-radius: 3px;
+        margin-bottom: 1rem;
+      }
+
+      #editForm input[type="submit"],
+      button {
+        width: 100%;
+        padding: 1rem;
+        font-size: 1.6rem;
+        background-color: rgb(43, 216, 226);
+        color: #fff;
+        border: none;
+        border-radius: 3px;
+        cursor: pointer;
+        margin-bottom: 2rem;
+      }
+      /* -----------------cart-------------- */
+    </style>
+  </head>
+  <body>
+    <h1>Edit Blog Post</h1>
+    <form id="editForm" action="" method="PATCH">
+      <label for="topic">Topic:</label>
+      <input type="text" id="topic" name="topic" required /><br /><br />
+      <label for="description">Description:</label><br />
+      <textarea id="description" name="description" required></textarea
+      ><br /><br />
+      <input type="submit" />
+      <button id="deleteButton">Delete</button>
+    </form>
+
+    <script>
+      const form = document.getElementById("editForm");
+      const deleteButton = document.getElementById("deleteButton");
+      const url = window.location.href;
+      const id = url.split("/").pop().split("=")[1];
+
+      async function displayData() {
+        try {
+          const response = await fetch(`/adminData/${id}`);
+          const result = await response.json();
+          const data = result.update;
+          // console.log(result);
+
+          // Pre-fill the form fields with the retrieved data
+          document.getElementById("topic").value = data.topic;
+          document.getElementById("description").value = data.description;
+
+          // console.log(data);
+        } catch (error) {
+          console.error(error);
+        }
+      }
+
+      document.addEventListener("DOMContentLoaded", displayData);
+
+      form.addEventListener("submit", async (e) => {
+        e.preventDefault();
+
+        const topic = document.getElementById("topic").value;
+        const description = document.getElementById("description").value;
+
+        const data = {
+          topic,
+          description,
+        };
+
+        try {
+          const response = await fetch(`/admin/${id}`, {
+            method: "PATCH",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(data),
+          });
+
+          const result = await response.json();
+
+          // Handle the response from the backend
+          alert("blog has been updated");
+
+          console.log(result);
+        } catch (error) {
+          console.error(error);
+        }
+      });
+
+      deleteButton.addEventListener("click", async (e) => {
+        e.preventDefault();
+
+        try {
+          const response = await fetch(`/admin/${id}`, {
+            method: "DELETE",
+          });
+
+          const result = await response.json();
+
+          // Handle the response from the backend
+          alert("blog has been deleted");
+
+          console.log(result);
+        } catch (error) {
+          console.error(error);
+        }
+      });
+    </script>
+  </body>
+</html>
