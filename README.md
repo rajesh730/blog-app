@@ -1,6 +1,6 @@
 ## E-commerce API
 
-This blog-app website created using HTML,CSS,JS,node JS,Express JS,mongo DB and mongoose that allows user to create blog,update the blog and then delete the blog.This project also include authentication and authorization for the blog management security.
+This blog-app website created using HTML,CSS,JS,node JS,Express JS,mongo DB and mongoose allow user to create blog,update the blog and then delete the blog.This project also include authentication and authorization for the blog management security.
 
 ## Features
 
