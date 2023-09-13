@@ -24,6 +24,6 @@ This blog-app website created using HTML,CSS,JS,node JS,Express JS,mongo DB and 
   git clone https://github.com/rajesh730/blog-app
 ```
 
--**Install Dependencies :** `npm install`
+- **Install Dependencies :** `npm install`
 
 - **Run :** `server.js`
